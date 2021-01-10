@@ -1,25 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import './App.css';
+import teslaData from "./data/tesla-sites.json"
 
 function App() {
+
+const filteredStations = teslaData.filter(tsla => tsla.address.country === "Italy")
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MapContainer center={[42.585444, 13.257684]} zoom={6} scrollWheelZoom={true}>
+      <TileLayer
+        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+
+      {filteredStations.map(tsla => (
+        <Marker key = {tsla.id} position={[tsla.gps.latitude, tsla.gps.longitude]}>
+          <Popup position={[tsla.gps.latitude, tsla.gps.longitude]}>
+            <div>
+              <h2>{"Name: " + tsla.name}</h2>
+              <p>{"Status: " + tsla.status}</p>
+              <p>{"Number of Charging Stations: " + tsla.stallCount}</p>
+            </div>
+          </Popup>
+        </Marker>
+      ))}
+    </MapContainer>
   );
 }
 
