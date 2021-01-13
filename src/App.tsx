@@ -6,7 +6,6 @@ import polyline from '@mapbox/polyline'
 
 function App() {
 
-
   interface Activity {
     activityPositions: any;
     activityName: string;
@@ -14,7 +13,6 @@ function App() {
   }
 
   const [activities, setActivites] = useState<Activity[]>([]);
-
   const clientID = "your id";
   const clientSecret = "your client secret";
   const refreshToken = "your refresh token"
