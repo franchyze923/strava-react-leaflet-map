@@ -13,9 +13,9 @@ function App() {
 
   const [nodes, setNodes] = useState<Node[]>([]);
 
-  const clientID = "your client id";
-  const clientSecret = "your client secret";
-  const refreshToken = "your refresh token"
+  const clientID = "43995";
+  const clientSecret = "6b583c87a9969f7cc66c7b6b0cff643b820bb135";
+  const refreshToken = "98b596ec1ce3a93f6cda9515ee3cb430d259e946"
   const auth_link = "https://www.strava.com/oauth/token"
   const activities_link = `https://www.strava.com/api/v3/athlete/activities`
 
